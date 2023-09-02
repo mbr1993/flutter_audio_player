@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_audio_player/viewmodel/splash_view_model.dart';
 import 'package:get/get.dart';
+import '../viewModel/splash_view_model.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -11,7 +11,7 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  final splashVM = Get.put(SplashViewMode());
+  final splashVM = Get.put(SplashViewModel());
 
   @override
   void initState() {
