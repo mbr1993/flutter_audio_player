@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/view_all_section.dart';
+import '../../viewModel/splash_view_model.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -26,7 +27,9 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: TColor.bg,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.find<SplashViewModel>().openDrawer();
+          },
           icon: Image.asset(
             "assets/img/menu.png",
             width: 25,
