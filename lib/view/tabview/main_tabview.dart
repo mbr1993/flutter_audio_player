@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_player/common/color_extension.dart';
 import 'package:flutter_audio_player/view/home/home_view.dart';
+import 'package:flutter_audio_player/view/settings/settings_view.dart';
+import 'package:flutter_audio_player/view/songs/songs_view.dart';
 import 'package:flutter_audio_player/viewModel/splash_view_model.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class MainViewTab extends StatefulWidget {
   const MainViewTab({super.key});
@@ -182,14 +183,10 @@ class _MainViewTabState extends State<MainViewTab>
       ),
       body: TabBarView(
         controller: controller,
-        children: [
-          const HomeView(),
-          Container(
-            child: Center(child: Text("Songs")),
-          ),
-          Container(
-            child: Center(child: Text("Settings")),
-          ),
+        children: const [
+          HomeView(),
+          SongsView(),
+          SettingsView(),
         ],
       ),
       bottomNavigationBar: Container(
