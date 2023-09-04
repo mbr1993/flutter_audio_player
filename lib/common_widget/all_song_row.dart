@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 import '../common/color_extension.dart';
 
 class AllSongRow extends StatelessWidget {
@@ -45,12 +43,13 @@ class AllSongRow extends StatelessWidget {
                   width: 15,
                   height: 15,
                   decoration: BoxDecoration(
-                    border: Border.all(color: TColor.bg),
+                    color: TColor.bg,
                     borderRadius: BorderRadius.circular(7.5),
                   ),
                 ),
               ],
             ),
+            const SizedBox(width: 15),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,28 +65,19 @@ class AllSongRow extends StatelessWidget {
                   Text(
                     sObj["artists"],
                     maxLines: 1,
-                    style: TextStyle(color: TColor.secondaryText, fontSize: 10),
+                    style: TextStyle(color: TColor.primaryText28, fontSize: 10),
                   ),
                 ],
               ),
             ),
-            IgnorePointer(
-              ignoring: true,
-              child: RatingBar.builder(
-                initialRating: 4,
-                minRating: 1,
-                direction: Axis.horizontal,
-                allowHalfRating: true,
-                unratedColor: TColor.org.withOpacity(0.1),
-                itemSize: 12,
-                itemCount: 5,
-                itemPadding: EdgeInsets.zero,
-                itemBuilder: (context, _) =>
-                    Icon(Icons.star, color: TColor.org),
-                updateOnDrag: false,
-                onRatingUpdate: (rating) {},
+            IconButton(
+              onPressed: onPressed,
+              icon: Image.asset(
+                'assets/img/play_btn.png',
+                width: 25,
+                height: 25,
               ),
-            ),
+            )
           ],
         ),
         Divider(

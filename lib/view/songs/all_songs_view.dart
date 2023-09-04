@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_audio_player/common_widget/all_song_row.dart';
 import 'package:flutter_audio_player/viewModel/all_songs_view_model.dart';
 import 'package:get/get.dart';
 
@@ -16,9 +17,13 @@ class _AllSongsViewState extends State<AllSongsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() => ListView.builder(
+            padding: const EdgeInsets.all(20),
             itemCount: allVM.allList.length,
             itemBuilder: (BuildContext context, int index) {
               var sObj = allVM.allList[index];
+
+              return AllSongRow(
+                  onPressed: () {}, onPressedPlay: () {}, sObj: sObj);
             },
           )),
     );
