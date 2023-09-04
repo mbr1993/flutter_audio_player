@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_audio_player/common_widget/icon_text_row.dart';
 import 'package:get/get.dart';
 
 import '../../common/color_extension.dart';
@@ -36,17 +37,15 @@ class _SettingsViewState extends State<SettingsView> {
               fontSize: 17,
               fontWeight: FontWeight.w600),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              "assets/img/search.png",
-              width: 20,
-              height: 20,
-              fit: BoxFit.contain,
-              color: TColor.primaryText35,
-            ),
-          ),
+      ),
+      body: ListView(
+        children: [
+          IconTextRow(title: "Display", icon: "assets/img/s_display.png", onTap: () {}),
+          IconTextRow(title: "Audio", icon: "assets/img/s_audio.png", onTap: () {}),
+          IconTextRow(title: "Headset", icon: "assets/img/s_headset.png", onTap: () {}),
+          IconTextRow(title: "Lock Screen", icon: "assets/img/s_lock_screen.png", onTap: () {}),
+          IconTextRow(title: "Advanced", icon: "assets/img/s_menu.png", onTap: () {}),
+          IconTextRow(title: "Other", icon: "assets/img/s_other.png", onTap: () {}),
         ],
       ),
     );
