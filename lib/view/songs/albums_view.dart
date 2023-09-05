@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_audio_player/common_widget/album_cell.dart';
-import 'package:flutter_audio_player/viewModel/album_view_model.dart';
 import 'package:get/get.dart';
+import '../../common_widget/album_cell.dart';
+import '../../viewModel/album_view_model.dart';
+import 'album_details_view.dart';
 
 class AlbumsView extends StatefulWidget {
   const AlbumsView({super.key});
@@ -16,25 +18,31 @@ class _AlbumsViewState extends State<AlbumsView> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.sizeOf(context);
+
     var cellWidth = (media.width - 40.0 - 20.0) * 0.5;
 
     return Scaffold(
       body: Obx(
-        () => GridView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            () => GridView.builder(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 20,
-              childAspectRatio: cellWidth/(cellWidth + 45),
-              mainAxisSpacing: 10,
-            ),
+                crossAxisCount: 2,
+                childAspectRatio: cellWidth / (cellWidth + 45.0),
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 10),
             itemCount: albumVM.allList.length,
             itemBuilder: (context, index) {
               var aObj = albumVM.allList[index];
               return AlbumCell(
                 aObj: aObj,
-                onPressed: () {},
-                onPressedMenu: (selectedIndex){},
+                onPressed: () {
+                  Get.to(() => const AlbumDetailsView());
+                },
+                onPressedMenu: (selectIndex) {
+                  if (kDebugMode) {
+                    print(index);
+                  }
+                },
               );
             }),
       ),
