@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_audio_player/view/songs/albums_view.dart';
 import 'package:flutter_audio_player/view/songs/all_songs_view.dart';
 import 'package:flutter_audio_player/view/songs/playlists_view.dart';
 import 'package:get/get.dart';
@@ -96,7 +97,7 @@ class _SongsViewState extends State<SongsView>
               children: const [
                 AllSongsView(),
                 PlaylistsView(),
-                Center(child: Text("Albums")),
+                AlbumsView(),
                 Center(child: Text("Artists")),
                 Center(child: Text("Genres")),
               ],
