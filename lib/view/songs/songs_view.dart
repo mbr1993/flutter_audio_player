@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_player/view/songs/albums_view.dart';
 import 'package:flutter_audio_player/view/songs/all_songs_view.dart';
+import 'package:flutter_audio_player/view/songs/artists_view.dart';
 import 'package:flutter_audio_player/view/songs/playlists_view.dart';
 import 'package:get/get.dart';
 
@@ -69,7 +70,7 @@ class _SongsViewState extends State<SongsView>
       body: Column(
         children: [
           SizedBox(
-            height: kToolbarHeight-15,
+            height: kToolbarHeight - 15,
             child: TabBar(
                 controller: tabController,
                 isScrollable: true,
@@ -98,7 +99,7 @@ class _SongsViewState extends State<SongsView>
                 AllSongsView(),
                 PlaylistsView(),
                 AlbumsView(),
-                Center(child: Text("Artists")),
+                ArtistsView(),
                 Center(child: Text("Genres")),
               ],
             ),
