@@ -24,7 +24,6 @@ class MusicWidget : AppWidgetProvider() {
     }
 }
 
-
 internal fun updateAppWidget(
     context: Context?,
     appWidgetManager: AppWidgetManager?,
