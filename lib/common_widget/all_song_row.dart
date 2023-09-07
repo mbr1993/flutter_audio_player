@@ -6,11 +6,12 @@ class AllSongRow extends StatelessWidget {
   final VoidCallback onPressedPlay;
   final VoidCallback onPressed;
 
-  const AllSongRow(
-      {super.key,
-      required this.onPressed,
-      required this.onPressedPlay,
-      required this.sObj});
+  const AllSongRow({
+    super.key,
+    required this.sObj,
+    required this.onPressed,
+    required this.onPressedPlay,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class AllSongRow extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(25),
                   child: Image.asset(
-                    sObj['image'],
+                    sObj["image"],
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
@@ -49,41 +50,41 @@ class AllSongRow extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(width: 15),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    sObj["name"],
-                    maxLines: 1,
-                    style: TextStyle(
-                        color: TColor.primaryText60,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  Text(
-                    sObj["artists"],
-                    maxLines: 1,
-                    style: TextStyle(color: TColor.primaryText28, fontSize: 10),
-                  ),
-                ],
-              ),
+            const SizedBox(
+              width: 15,
             ),
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  sObj["name"],
+                  maxLines: 1,
+                  style: TextStyle(
+                      color: TColor.primaryText60,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700),
+                ),
+                Text(
+                  sObj["artists"],
+                  maxLines: 1,
+                  style: TextStyle(color: TColor.primaryText28, fontSize: 10),
+                )
+              ],
+            )),
             IconButton(
-              onPressed: onPressed,
+              onPressed: onPressedPlay,
               icon: Image.asset(
-                'assets/img/play_btn.png',
+                "assets/img/play_btn.png",
                 width: 25,
                 height: 25,
               ),
-            )
+            ),
           ],
         ),
         Divider(
           color: Colors.white.withOpacity(0.07),
           indent: 50,
-          endIndent: 20,
         ),
       ],
     );

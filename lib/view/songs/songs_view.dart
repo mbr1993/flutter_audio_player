@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_audio_player/view/songs/albums_view.dart';
 import 'package:flutter_audio_player/view/songs/all_songs_view.dart';
 import 'package:flutter_audio_player/view/songs/artists_view.dart';
+import 'package:flutter_audio_player/view/songs/genres_view.dart';
 import 'package:flutter_audio_player/view/songs/playlists_view.dart';
 import 'package:get/get.dart';
 
@@ -76,16 +77,14 @@ class _SongsViewState extends State<SongsView>
                 isScrollable: true,
                 indicatorColor: TColor.focus,
                 indicatorPadding: const EdgeInsets.symmetric(horizontal: 20),
-                labelStyle: TextStyle(
-                    color: TColor.primary,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
-                unselectedLabelStyle: TextStyle(
-                    color: TColor.primaryText80,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
+                labelColor: TColor.focus,
+                unselectedLabelColor: TColor.primaryText80,
+                labelStyle:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                unselectedLabelStyle:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                 tabs: const [
-                  Tab(text: "All Songs"),
+                  Tab(text: "A ll Songs"),
                   Tab(text: "Playlists"),
                   Tab(text: "Albums"),
                   Tab(text: "Artists"),
@@ -100,7 +99,7 @@ class _SongsViewState extends State<SongsView>
                 PlaylistsView(),
                 AlbumsView(),
                 ArtistsView(),
-                Center(child: Text("Genres")),
+                GenresView(),
               ],
             ),
           )

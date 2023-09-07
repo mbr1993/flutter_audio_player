@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_player/common_widget/all_song_row.dart';
+import 'package:flutter_audio_player/view/main_player/main_player_view.dart';
 import 'package:flutter_audio_player/viewModel/all_songs_view_model.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,12 @@ class _AllSongsViewState extends State<AllSongsView> {
               var sObj = allVM.allList[index];
 
               return AllSongRow(
-                  onPressed: () {}, onPressedPlay: () {}, sObj: sObj);
+                sObj: sObj,
+                onPressed: () {},
+                onPressedPlay: () {
+                  Get.to(() => const MainPlayerView());
+                },
+              );
             },
           )),
     );

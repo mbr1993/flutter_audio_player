@@ -66,15 +66,13 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  ClipRect(
-                    child: ImageFiltered(
-                      imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                      child: Image.asset(
-                        "assets/img/artitst_detail_top.png",
-                        width: double.maxFinite,
-                        height: media.width * 0.45,
-                        fit: BoxFit.cover,
-                      ),
+                  ImageFiltered(
+                    imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                    child: Image.asset(
+                      "assets/img/artitst_detail_top.png",
+                      width: double.maxFinite,
+                      height: media.width * 0.45,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Container(
@@ -123,8 +121,6 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   "4,357",
@@ -165,7 +161,6 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                               ],
                             ),
                             InkWell(
-                              borderRadius: BorderRadius.circular(17.5),
                               onTap: () {},
                               child: Container(
                                 width: 70,
@@ -217,19 +212,20 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
             ),
             ViewAllSection(title: "Top Songs", onPressed: () {}),
             ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                itemCount: artVM.playedArr.length,
-                itemBuilder: (context, index) {
-                  var sObj = artVM.playedArr[index];
-                  return AlbumSongRow(
-                    sObj: sObj,
-                    onPressed: () {},
-                    onPressedPlay: () {},
-                    isPlay: index == 0,
-                  );
-                })
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              itemCount: artVM.playedArr.length,
+              itemBuilder: (context, index) {
+                var sObj = artVM.playedArr[index];
+                return AlbumSongRow(
+                  sObj: sObj,
+                  onPressed: () {},
+                  onPressedPlay: () {},
+                  isPlay: index == 0,
+                );
+              },
+            )
           ],
         ),
       ),
