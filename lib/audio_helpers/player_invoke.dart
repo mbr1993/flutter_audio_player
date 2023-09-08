@@ -4,7 +4,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:flutter_audio_player/audio_helpers/page_manager.dart';
 import 'package:flutter_audio_player/audio_helpers/service_locator.dart';
 
-import 'mediaItem_converter.dart';
+import 'media_item_converter.dart';
 
 DateTime playerTapTime = DateTime.now();
 bool get isProcessForPlay {
