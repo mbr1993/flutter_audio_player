@@ -17,7 +17,6 @@ class ControlButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pageManager = getIt<PageManager>();
-    final mediaItem = pageManager.currentSongNotifier.value;
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -53,6 +52,40 @@ class ControlButtons extends StatelessWidget {
                                   TColor.primaryText),
                             ),
                           ),
+                        ),
+                      if (miniPlayer)
+                        Center(
+                          child: value == ButtonState.playing
+                              ? IconButton(
+                                  onPressed: pageManager.pause,
+                                  icon: Icon(Icons.pause_rounded,
+                                      color: TColor.primaryText),
+                                )
+                              : IconButton(
+                                  onPressed: pageManager.play,
+                                  icon: Image.asset(
+                                      'assets/img/play.png',
+                                      width: 20,
+                                      height: 20),
+                                ),
+                        )
+                      else
+                        Center(
+                          child: value == ButtonState.playing
+                              ? IconButton(
+                                  onPressed: pageManager.pause,
+                                  icon: Icon(
+                                    Icons.pause_rounded,
+                                    color: TColor.primaryText,
+                                  ))
+                              : IconButton(
+                                  onPressed: pageManager.play,
+                                  icon: Image.asset(
+                                    'assets/img/play.png',
+                                    width: 50,
+                                    height: 50,
+                                  ),
+                                ),
                         )
                     ],
                   );

@@ -2,8 +2,10 @@ import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_player/audio_helpers/page_manager.dart';
+import 'package:flutter_audio_player/common_widget/control_buttons.dart';
 import 'dart:ui' as ui;
 import '../audio_helpers/service_locator.dart';
+import '../common/color_extension.dart';
 
 class MiniPlayerView extends StatefulWidget {
   static const MiniPlayerView _instance = MiniPlayerView._internal();
@@ -27,7 +29,6 @@ class _MiniPlayerViewState extends State<MiniPlayerView> {
   @override
   Widget build(BuildContext context) {
     final pageManager = getIt<PageManager>();
-    final double screenWidth = MediaQuery.sizeOf(context).width;
 
     return ValueListenableBuilder<AudioProcessingState>(
       valueListenable: pageManager.playbackStatNotifier,
@@ -84,6 +85,53 @@ class _MiniPlayerViewState extends State<MiniPlayerView> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              ValueListenableBuilder<ProgressBarState>(
+                                  valueListenable: pageManager.progressNotifier,
+                                  builder: (context, value, _) {
+                                    final position = value.current;
+                                    final totalDuration = value.total;
+
+                                    return position == null
+                                        ? const SizedBox()
+                                        : (position.inSeconds.toDouble() <
+                                                    0.0 ||
+                                                (position.inSeconds.toDouble() >
+                                                    totalDuration.inSeconds
+                                                        .toDouble()))
+                                            ? const SizedBox()
+                                            : SliderTheme(
+                                                data: SliderThemeData(
+                                                    activeTrackColor:
+                                                        TColor.focus,
+                                                    inactiveTrackColor:
+                                                        Colors.transparent,
+                                                    trackHeight: 5,
+                                                    thumbColor: TColor.focus,
+                                                    thumbShape:
+                                                        const RoundSliderOverlayShape(
+                                                      overlayRadius: 5,
+                                                    ),
+                                                    overlayColor:
+                                                        Colors.transparent,
+                                                    overlayShape:
+                                                        const RoundSliderOverlayShape(
+                                                            overlayRadius: 2)),
+                                                child: Center(
+                                                  child: Slider(
+                                                      inactiveColor:
+                                                          Colors.transparent,
+                                                      value: position.inSeconds
+                                                          .toDouble(),
+                                                      max: totalDuration
+                                                          .inSeconds
+                                                          .toDouble() ,
+                                                      onChanged: (newPosition) {
+                                                        pageManager.seek(Duration(
+                                                            seconds: newPosition
+                                                                .round()));
+                                                      }),
+                                                ));
+                                  }),
                               ListTile(
                                 dense: false,
                                 onTap: () {},
@@ -116,7 +164,7 @@ class _MiniPlayerViewState extends State<MiniPlayerView> {
                                             fit: BoxFit.cover,
                                           );
                                         },
-                                        placeholder: (context, url){
+                                        placeholder: (context, url) {
                                           return Image.asset(
                                             'assets/img/cover.jpg',
                                             fit: BoxFit.cover,
@@ -126,8 +174,9 @@ class _MiniPlayerViewState extends State<MiniPlayerView> {
                                     ),
                                   ),
                                 ),
-                                trailing: Container(
-
+                                trailing: const ControlButtons(
+                                  miniPlayer: true,
+                                  buttons: ['Play/Pause', 'Next'],
                                 ),
                               )
                             ],

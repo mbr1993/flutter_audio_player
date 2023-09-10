@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_player/common/color_extension.dart';
 import 'package:flutter_audio_player/common_widget/icon_text_row.dart';
+import 'package:flutter_audio_player/common_widget/mini_player_view.dart';
 import 'package:flutter_audio_player/view/home/home_view.dart';
 import 'package:flutter_audio_player/view/settings/settings_view.dart';
 import 'package:flutter_audio_player/view/songs/songs_view.dart';
@@ -98,12 +99,18 @@ class _MainViewTabState extends State<MainViewTab>
           ],
         ),
       ),
-      body: TabBarView(
-        controller: controller,
-        children: const [
-          HomeView(),
-          SongsView(),
-          SettingsView(),
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          TabBarView(
+            controller: controller,
+            children: const [
+              HomeView(),
+              SongsView(),
+              SettingsView(),
+            ],
+          ),
+          MiniPlayerView()
         ],
       ),
       bottomNavigationBar: Container(
